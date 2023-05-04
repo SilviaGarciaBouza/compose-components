@@ -4,10 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Text
-import androidx.compose.material.TextField
-import androidx.compose.material.TextFieldDefaults
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -128,6 +125,14 @@ fun MyImageText0() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(text = "Happy Birthday", fontSize = 32.sp)
+
+    }
+}
+
+@Composable
+fun Greeting() {
+    Surface(color = Color.Yellow) {
+        Text(text = "Hi!")
 
     }
 }
