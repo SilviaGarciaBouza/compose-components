@@ -1,52 +1,33 @@
 package com.example.mycomposeapplication
 
-import android.app.Activity
-import android.graphics.drawable.Icon
 import android.os.Bundle
-import android.text.style.BackgroundColorSpan
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.annotation.DrawableRes
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Star
-import androidx.compose.material.icons.filled.Visibility
-import androidx.compose.material.icons.filled.VisibilityOff
-import androidx.compose.material.icons.rounded.Close
-import androidx.compose.material.icons.rounded.Star
 import androidx.compose.runtime.*
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.Alignment.Companion.End
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.layout.VerticalAlignmentLine
-import androidx.compose.ui.modifier.modifierLocalConsumer
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.text.style.TextDecoration
-import androidx.compose.ui.tooling.preview.Device
-import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import androidx.compose.ui.window.Dialog
-import androidx.compose.ui.window.DialogProperties
-import androidx.constraintlayout.compose.ChainStyle
-import androidx.constraintlayout.compose.ConstraintLayout
 import com.example.mycomposeapplication.ui.theme.MyComposeApplicationTheme
+
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.Icons
+
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.geometry.Offset
+
+import androidx.compose.ui.text.font.FontWeight
+
+import androidx.compose.ui.unit.dp
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,178 +40,140 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colors.background
 
                 ) {
-                    LogIg()
+                    Tuit()
                 }
             }
         }
     }
-}
 
 
+    @Preview(showBackground = true)
+    @Composable
+    fun DefaultPreview() {
+        MyComposeApplicationTheme {
+            Tuit()
 
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    MyComposeApplicationTheme {
-        LogIg()
-
-    }
-}
-
-
-
-
-@Composable
-fun LogIg() {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(22.dp)
-    ) {
-        HeaderLog(Modifier.align(Alignment.TopEnd))
-        Spacer(modifier = Modifier.size(26.dp))
-        BodyLog(Modifier.align(Alignment.Center))
-        Spacer(modifier = Modifier.size(26.dp))
-        footerLog(Modifier.align(Alignment.BottomCenter))
-    }
-}
-
-
-@Composable
-fun footerLog(modifier: Modifier) {
-    Column(modifier = modifier) {
-        Divider(color = Color.Gray)
-        Spacer(modifier = Modifier.size(16.dp))
-        Row(modifier = Modifier.align(Alignment.CenterHorizontally)) {
-            Text(text = "Don't have a account?", color = Color.Gray)
-            Text(
-                text = "Sign Up",
-                modifier.padding(horizontal = 8.dp),
-                color = Color(0xFF4EA8E9)
-            )
         }
-        Spacer(modifier = Modifier.size(16.dp))
-
     }
-}
 
-@Composable
+    @Composable
+    fun Tuit() {
+        Column(modifier = Modifier
+            .background(color = Color.Black)
+            .padding(28.dp)) {
 
-fun BodyLog(modifier: Modifier) {
-    var textLogEmail by rememberSaveable { mutableStateOf("") }
-    var textLogPassword by rememberSaveable { mutableStateOf("") }
-    Column(modifier = modifier) {
-        //Modifier en mayuscula pq es una instancioa del de la column
+
+            Row() {
+                StartTuit(1f)
+                Spacer(modifier = Modifier.size(18.dp))
+                EndTuit(3f)
+            }
+            Spacer(modifier = Modifier.height(20.dp))
+            DividerTuitBotton()
+        }
+    }
+
+
+    @Composable
+    fun DividerTuitBotton() {
+        Divider(
+            Modifier
+                .fillMaxWidth()
+                , color = Color.Gray
+        )
+    }
+
+    @Composable
+    fun StartTuit(percentage: Float = 1f) {
+        val image = painterResource(R.drawable.avatar)
         Image(
-            painter = painterResource(R.drawable.insta),
+            painter = image,
             contentDescription = null,
-            Modifier.align(Alignment.CenterHorizontally)
+            contentScale = ContentScale.Crop,
+            modifier = Modifier
+                .clip(CircleShape)
+                .size(55.dp)
         )
-        Spacer(modifier = modifier.size(16.dp))
-        TextFieldEmail(textLogEmail, { textLogEmail = it })
-        Spacer(modifier = modifier.size(8.dp))
-        TextFieldPassword(textLogPassword, { textLogPassword = it })
-        Text(
-            text = "Forgot password?",
-            fontSize = 12.sp,
-            fontWeight = FontWeight.Bold,
-            color = Color(0xFF4EA8E9),
-            //tiene q ir Modifier en mayúscula pq usas el de la coumn yno el de bodyLog
-            modifier = Modifier.align(Alignment.End)
-        )
-        Spacer(modifier = modifier.size(16.dp))
-        Button(onClick = { /*TODO*/ }, modifier = modifier.fillMaxWidth()) {
-            Text(text = "Log in", color = Color.White)
-        }
-        Spacer(modifier = modifier.size(16.dp))
-        Row {
-            Divider(modifier = modifier.weight(1f), color = Color.Gray)
-            Text(text = "OR")
-            Divider(modifier = modifier.weight(1f), color = Color.Gray)
-        }
-        Spacer(modifier = modifier.size(16.dp))
-        Row(modifier = Modifier.align(Alignment.CenterHorizontally)) {
-            Image(
-                painter = painterResource(id = R.drawable.fb),
-                contentDescription = "",
-                modifier = modifier.size(22.dp)
+
+    }
+
+    @Composable
+    fun EndTuit(percentage: Float = 3f) {
+        Column() {
+            Row() {
+                Text(text = "Name", color = Color.White, fontWeight = FontWeight.Bold)
+                Spacer(modifier = Modifier.width(10.dp))
+                Text(text = "@UserName", color = Color.Gray)
+                Spacer(modifier = Modifier.width(10.dp))
+                Text(text = "1h", color = Color.Gray)
+                Spacer(
+                    modifier = Modifier.weight(1f)
+                )
+                Icon()
+            }
+            Text(
+                text = "Texto ejemplo de algún tuit que se podría introducir en este espacio y con alguna explicación o simplemente algún tuit que alguien haya escrito que sea importante o por pasar el tiempo",
+                color = Color.White
             )
-            Text(text = "Continue as Name Name", color = Color(0xFF4EA8E9))
+            Spacer(modifier = Modifier.height(14.dp))
+            CardTuit()
+            Spacer(modifier = Modifier.height(14.dp))
+            Row() {
+                BadgeBoxTuitBotton(R.drawable.ic_chat,R.drawable.ic_chat_filled, Color.Gray, Color.White ,"1")
+                Spacer(modifier = Modifier.width(68.dp))
+                BadgeBoxTuitBotton(R.drawable.ic_rt,R.drawable.ic_rt , Color.Gray, Color.Green,"1")
+                Spacer(modifier = Modifier.width(68.dp))
+                BadgeBoxTuitBotton(R.drawable.ic_like, R.drawable.ic_like_filled , Color.Gray, Color.Red,"1")
+            }
+        }
 
+    }
+
+    @Composable
+    fun CardTuit() {
+        val image = painterResource(R.drawable.avatar)
+        Card(
+            modifier = Modifier
+                .fillMaxWidth(),
+            elevation = 2.dp,
+            shape = MaterialTheme.shapes.small
+        ) {
+            Image(painter = image, contentDescription = "", contentScale = ContentScale.FillWidth)
+
+        }
+    }
+@OptIn(ExperimentalMaterialApi::class)
+@Composable
+    fun BadgeBoxTuitBotton(icon: Int, iconClic: Int, color: Color, colorClic: Color, textNumber: String) {
+    var isClick by rememberSaveable { mutableStateOf(false) }
+    var textNumberclick = textNumber.toInt() + 1
+
+    if (isClick == false) {
+        BadgedBox(badge = { Text(text = textNumber,color = Color.Gray, modifier = Modifier.padding(start = 4.dp)) }) {
+            Icon(painterResource(id = icon), contentDescription = "", tint = color, modifier = Modifier.clickable { isClick= !isClick })
+        }
+    } else {
+        BadgedBox(badge = { Text(text = textNumberclick.toString(), color = colorClic, modifier = Modifier.padding(start = 4.dp)) }) {
+            Icon(painterResource(id = iconClic), contentDescription = "", tint = colorClic, modifier = Modifier.clickable { isClick= !isClick })
         }
     }
 }
 
-@Composable
-fun TextFieldEmail(email: String, onTextChanged: (String) -> Unit) {
-    TextField(
-        value = email,
-        onValueChange = onTextChanged,
-        enabled = true,
-        modifier = Modifier.fillMaxWidth(),
-        placeholder = { Text(text = "Email") },
-        maxLines = 1,
-        singleLine = true,
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
-        colors = TextFieldDefaults.textFieldColors(
-            textColor = Color(0xFFB2B2B2),
-            backgroundColor = Color(0xFFFAFAFA),
-            focusedIndicatorColor = Color.Transparent,
-            unfocusedIndicatorColor = Color.Transparent
-        )
-    )
-}
-
-@Composable
-fun TextFieldPassword(password: String, onTextChanged: (String) -> Unit) {
-    var passwordVisibility by rememberSaveable { mutableStateOf(false) }
-    TextField(
-        value = password,
-        onValueChange = onTextChanged,
-        enabled = true,
-        modifier = Modifier.fillMaxWidth(),
-        placeholder = { Text(text = "Password") },
-        maxLines = 1,
-        singleLine = true,
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-        colors = TextFieldDefaults.textFieldColors(
-            textColor = Color(0xFFB2B2B2),
-            backgroundColor = Color(0xFFFAFAFA),
-            focusedIndicatorColor = Color.Transparent,
-            unfocusedIndicatorColor = Color.Transparent
-        ),
-        trailingIcon = {
-            val image = if (passwordVisibility) {
-                Icons.Filled.VisibilityOff
-            } else {
-                Icons.Filled.Visibility
-            }
-            IconButton(onClick = { passwordVisibility = !passwordVisibility }) {
-                Icon(imageVector = image, contentDescription = "Show password")
-            }
-        },
-        visualTransformation = if (passwordVisibility) {
-            VisualTransformation.None
-        } else {
-            PasswordVisualTransformation()
+    @Composable
+    fun Icon() {
+        Box() {
+            Icon(
+                painterResource(id = R.drawable.ic_dots),
+                contentDescription = "Icon",
+                tint = Color.White
+            )
         }
-    )
-
-}
-
-
-
-
-@Composable
-fun HeaderLog(modifier: Modifier) {
-    var activity = LocalContext.current as Activity
-    Box(Modifier.fillMaxWidth()) {
-        Icon(
-            imageVector = Icons.Rounded.Close,
-            contentDescription = "Close app",
-            tint = Color.Black,
-            modifier = modifier.clickable { activity.finish() }
-        )
     }
+
+
 }
+
+
+
+
 
