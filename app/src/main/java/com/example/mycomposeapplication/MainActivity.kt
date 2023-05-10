@@ -1,11 +1,21 @@
 package com.example.mycomposeapplication
 
+import android.media.Image
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
+
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.ui.Alignment
@@ -22,6 +32,9 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.modifier.modifierLocalConsumer
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.font.FontWeight.Companion.Bold
@@ -29,7 +42,9 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.mycomposeapplication.components.MyReciclerView3
 import com.example.mycomposeapplication.ui.theme.Shapes
+import kotlinx.coroutines.launch
 import java.text.DecimalFormat
 
 
@@ -48,16 +63,16 @@ class MainActivity : ComponentActivity() {
                     //DiceRoll()
                     // LogIg()
                     //Tuit()
-                   // TipCalculator()
-                    Art()
+                    // TipCalculator()
+                    // Art()
+                    //MyReciclerView1()
+                    MyReciclerView3()
 
 
                 }
             }
         }
     }
-
-
 
 
     @Preview(showBackground = true)
@@ -69,52 +84,8 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    
-    
-    
-    @Composable
-    fun Art(){
-        val image= painterResource(id = R.drawable.androidparty)
-        Column(modifier = Modifier
-            .fillMaxSize()
-            .padding(40.dp), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
-            Card(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .weight(1f),
-                elevation = 20.dp,
-                shape = MaterialTheme.shapes.small,
-                backgroundColor = Color.White
-            ) {
-                Image(painter = image,
-                    contentDescription = null,
-                    alpha = 0.5f,
-                    //redondo, borde le pones grosor, color y el redondeado q en este caso lo mismo q la imagen
-                    modifier = Modifier
-                        .padding(22.dp)
-                        .fillMaxSize())
-            }
-            Spacer(modifier = Modifier.size(40.dp))
-            Column( modifier = Modifier
-                .background(color = Color.LightGray)
-                .padding(22.dp)
-                .fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center ){
-                Text(text = "Autor: Magic Bell", fontSize = 24.sp)
-                Text(text = "Autor: Magic Bell", fontSize = 12.sp, fontWeight = FontWeight.Bold)
-            }
-            Spacer(modifier = Modifier.size(22.dp))
-            Row() {
-                Button(onClick = { /*TODO*/ }, modifier = Modifier.weight(1f)) {
-                    Text(text ="Previous" )
-                }
-                Spacer(modifier = Modifier.size(22.dp))
 
-                Button(onClick = { /*TODO*/ },modifier = Modifier.weight(1f)) {
-                    Text(text ="Next" )
-                }
-            }
-        }
-    }
+
 }
 
 
