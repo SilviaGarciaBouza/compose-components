@@ -1,5 +1,6 @@
 package com.example.mycomposeapplication
 
+import android.annotation.SuppressLint
 import android.media.Image
 import android.os.Bundle
 import android.widget.Toast
@@ -25,6 +26,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.mycomposeapplication.ui.theme.MyComposeApplicationTheme
 
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.*
 
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -47,6 +50,16 @@ import com.example.mycomposeapplication.ui.theme.Shapes
 import kotlinx.coroutines.launch
 import java.text.DecimalFormat
 
+import androidx.activity.compose.setContent
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
+import androidx.compose.material.icons.filled.*
+import androidx.compose.runtime.Composable
+import com.example.mycomposeapplication.components.MyScaffold1
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.coroutineScope
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,27 +79,35 @@ class MainActivity : ComponentActivity() {
                     // TipCalculator()
                     // Art()
                     //MyReciclerView1()
-                    MyReciclerView3()
+                    //MyReciclerView3()
+                   // MyScaffold1()
 
 
                 }
             }
         }
     }
-
-
-    @Preview(showBackground = true)
-    @Composable
-    fun DefaultPreview() {
-        MyComposeApplicationTheme {
-            Tuit()
-
-        }
-    }
-
-
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

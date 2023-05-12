@@ -3,7 +3,8 @@ package com.example.mycomposeapplication.components
 import android.widget.Toast
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.*
-import androidx.compose.foundation.R
+import com.example.mycomposeapplication.R
+
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -274,7 +275,7 @@ fun MyReciclerView1() {
     }
 }
 
-reci
+
 @Composable
 fun MyReciclerView() {
 
