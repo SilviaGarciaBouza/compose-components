@@ -3,6 +3,7 @@ package com.example.mycomposeapplication
 import android.annotation.SuppressLint
 import android.media.Image
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -81,13 +82,21 @@ class MainActivity : ComponentActivity() {
                     //MyReciclerView1()
                     //MyReciclerView3()
                    // MyScaffold1()
+                    AffirmationComb()
 
 
                 }
             }
         }
     }
-}
+
+
+    }
+
+
+
+
+
 
 
 
