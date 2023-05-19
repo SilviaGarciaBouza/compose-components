@@ -46,7 +46,6 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.mycomposeapplication.components.MyReciclerView3
 import kotlinx.coroutines.launch
 import java.text.DecimalFormat
 
@@ -62,11 +61,17 @@ import androidx.compose.material.icons.rounded.Close
 import androidx.compose.material.icons.rounded.OpenInBrowser
 import androidx.compose.material.icons.rounded.Star
 import androidx.compose.runtime.Composable
-import com.example.mycomposeapplication.components.MyScaffold1
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.coroutineScope
 import androidx.compose.foundation.lazy.LazyColumn
-import com.example.mycomposeapplication.components.MyReciclerView1
+import androidx.navigation.NavController
+import androidx.navigation.NavType
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgs
+import androidx.navigation.navArgument
+import com.example.mycomposeapplication.components.*
 import com.example.mycomposeapplication.ui.theme.*
 
 
@@ -91,141 +96,26 @@ class MainActivity : ComponentActivity() {
                     //MyReciclerView3()
                     // MyScaffold1()
                     //AffirmationComb()
-                    DogWoof()
-
-
-                }
-            }
-        }
-    }
-
-
-    @Composable
-    fun MyTopAppBarDog() {
-        TopAppBar(
-            title = { Text(text = "Woof") },
-            backgroundColor = MaterialTheme.colors.primary,
-            contentColor = MaterialTheme.colors.secondary,
-            elevation = 4.dp,
-        )
-    }
-
-
-    data class Dog(val name: String, val photo: Int, val years: Int, val description: String)
-
-    fun Dogs(): List<Dog> {
-        return listOf(
-            Dog("Bimba", R.drawable.perro1, 2, "She like play with the ball"),
-            Dog("Lúa", R.drawable.perro2, 8, "She sleep all day"),
-            Dog("Toy", R.drawable.perro3, 5, "He is wonderfull"),
-            Dog("Bimba", R.drawable.perro14, 9, "He like icecream"),
-            Dog("Popi", R.drawable.perro5, 1, "He is fat"),
-            Dog("Avellana", R.drawable.perro6, 3, "She sleep all day"),
-            Dog("Panter", R.drawable.perro7, 8, "She like play whit the ball"),
-            Dog("Fosquito", R.drawable.perro8, 2, "He is fat"),
-            Dog("Bimba", R.drawable.perro9, 1, "She like play whit the ball"),
-            Dog("Piruleta", R.drawable.perro10, 7, "She sleep all day"),
-            Dog("Bollicao", R.drawable.perro11, 2, "He is fat"),
-            Dog("Cortina", R.drawable.perro12, 9, "She like play whit the ball"),
-            Dog("Tableta", R.drawable.perro13, 4, "She sleep all day")
-
-
-        )
-    }
-
-    @Composable
-    fun ItemDog(dog: Dog) {
-        var expanded by remember { mutableStateOf(false) }
-        Card(
-            Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 18.dp)
-                .background(MaterialTheme.colors.surface)
-        ) {
-            Column(
-                //animación para expandirse como resorte
-                modifier = Modifier.animateContentSize(
-                    animationSpec = spring(
-                        dampingRatio = Spring.DampingRatioMediumBouncy,
-                        stiffness = Spring.StiffnessLow
-                    )
-                )
-            ) {
-
-
-                Row(
-                    Modifier
-                        .fillMaxSize()
-                        .padding(horizontal = 12.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.Center
-                ) {
-                    Row(Modifier.weight(1f)) {
-                        Image(
-                            painter = painterResource(dog.photo), contentDescription = "Dog photo",
-                            Modifier
-                                .clip(CircleShape)
-                                .size(50.dp), contentScale = ContentScale.Crop
-                        )
-                        Column(Modifier.padding(horizontal = 20.dp)) {
-                            Text(
-                                text = dog.name,
-                                color = MaterialTheme.colors.onPrimary,
-                                fontWeight = Bold
-                            )
-                            Text(
-                                text = "${dog.years} years old",
-                                color = MaterialTheme.colors.onPrimary
-                            )
-                        }
-                    }
-                    IconButton(onClick = { expanded = !expanded }) {
-                        Icon(
-                            imageVector = if (expanded) {
-                                Icons.Filled.ExpandMore
-                            } else {
-                                Icons.Filled.ExpandLess
-                            },
-                            contentDescription = "Icon",
-                            tint = MaterialTheme.colors.onPrimary,
-                        )
-
+                    //DogWoof()
+                    //pro Navigation:2 crea la navegación
+                    val navigationController = rememberNavController()
+                    NavHost(navController = navigationController, startDestination = Routes.Pantalla1.route){
+                        composable(Routes.Pantalla1.route){Screem1(navigationController)}
+                        composable(Routes.Pantalla2.route){Screem2(navigationController)}
+                        composable(Routes.Pantalla3.route){Screem3(navigationController)}
+                        composable(Routes.Pantalla4.route,
+                        arguments = listOf(navArgument("age") {type = NavType.IntType})
+                        ){backStackEntry->
+                            Screem4(navigationController, backStackEntry.arguments?.getInt("age") ?: 0)}
+                        composable(Routes.Pantalla5.route){Screem5(navigationController)}
+                        composable(Routes.Pantalla6.route,
+                            arguments = listOf(navArgument("name") {defaultValue = "S"})
+                        ){backStackEntry->
+                            Screem6(navigationController, backStackEntry.arguments?.getString("name"))}
                     }
                 }
-                if (expanded) {
-                    DogDescription(dog = dog)
-                }
             }
         }
-    }
-
-    @Composable
-    fun DogDescription(dog: Dog) {
-        Column(Modifier.padding(12.dp)) {
-            Text(
-                text = "Description", color = MaterialTheme.colors.onPrimary,
-                fontWeight = Bold
-            )
-            Text(text = dog.description)
-        }
-    }
-
-    @Composable
-    fun DogWoof() {
-        Column() {
-            MyTopAppBarDog()
-            LazyColumn(
-                Modifier
-                    .background(MaterialTheme.colors.background)
-                    .padding(top = 12.dp), verticalArrangement = Arrangement.spacedBy(14.dp)
-            ) {
-                items(Dogs()) {
-                    ItemDog(dog = it)
-                }
-
-            }
-        }
-
     }
 
 
