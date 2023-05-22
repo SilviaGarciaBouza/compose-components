@@ -3,6 +3,7 @@ package com.example.mycomposeapplication
 import android.annotation.SuppressLint
 import android.media.Image
 import android.os.Bundle
+import android.util.Patterns
 import android.view.View
 import android.widget.Toast
 import androidx.compose.material.MaterialTheme
@@ -50,6 +51,7 @@ import kotlinx.coroutines.launch
 import java.text.DecimalFormat
 
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
@@ -64,6 +66,10 @@ import androidx.compose.runtime.Composable
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.coroutineScope
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.runtime.livedata.observeAsState
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -98,6 +104,7 @@ class MainActivity : ComponentActivity() {
                     //AffirmationComb()
                     //DogWoof()
                     //pro Navigation:2 crea la navegación
+                    /*
                     val navigationController = rememberNavController()
                     NavHost(navController = navigationController, startDestination = Routes.Pantalla1.route){
                         composable(Routes.Pantalla1.route){Screem1(navigationController)}
@@ -113,14 +120,16 @@ class MainActivity : ComponentActivity() {
                         ){backStackEntry->
                             Screem6(navigationController, backStackEntry.arguments?.getString("name"))}
                     }
+                    */
+                    //MyViewModelExample(myViewModel= MyViewModel())
                 }
             }
         }
     }
 
 
-}
 
+}
 
 
 
