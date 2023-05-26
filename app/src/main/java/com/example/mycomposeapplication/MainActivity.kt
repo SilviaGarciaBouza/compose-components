@@ -1,6 +1,8 @@
 package com.example.mycomposeapplication
 
 import android.annotation.SuppressLint
+import android.app.GameManager
+import android.content.Intent
 import android.media.Image
 import android.os.Bundle
 import android.util.Patterns
@@ -67,6 +69,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.coroutineScope
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.window.Dialog
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -79,6 +82,9 @@ import androidx.navigation.navArgs
 import androidx.navigation.navArgument
 import com.example.mycomposeapplication.components.*
 import com.example.mycomposeapplication.ui.theme.*
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.update
 
 
 class MainActivity : ComponentActivity() {
@@ -122,14 +128,28 @@ class MainActivity : ComponentActivity() {
                     }
                     */
                     //MyViewModelExample(myViewModel= MyViewModel())
+
+                    var selected by rememberSaveable { mutableStateOf("") }
+                    var selectedFlavour by rememberSaveable { mutableStateOf("") }
+                    Cupcake(
+                        CupcakeViewModel(),
+                        selected,
+                        { selected = it },
+                        selectedFlavour,
+                        { selectedFlavour = it })
+
+
                 }
             }
         }
+
     }
-
-
-
 }
+
+
+
+
+
 
 
 

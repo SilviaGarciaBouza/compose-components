@@ -1,4 +1,4 @@
-package com.example.mycomposeapplication
+package com.example.mycomposeapplication.components
 
 import android.os.Bundle
 import android.util.Patterns

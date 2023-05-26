@@ -16,6 +16,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
+/*
+var selected by rememberSaveable { mutableStateOf("") }
+MyRadioButton (selected,  {selected = it})
+
+*/
+
 
 @Composable
 fun MyRadioButton(name: String, onItemSelected: (String) -> Unit) {
