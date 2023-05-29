@@ -2,20 +2,26 @@ package com.example.mycomposeapplication
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement.Bottom
+import androidx.compose.foundation.layout.WindowInsetsSides.Companion.Bottom
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.Card
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion.Magenta
+import androidx.compose.ui.graphics.Color.Companion.Yellow
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import com.example.mycomposeapplication.components.Routes
 
 data class Afirmation(val sentence: String, val image: Int)
 fun affirmations(): List<Afirmation> {
@@ -39,7 +45,7 @@ fun itemAffirmation(itemAffirmation: Afirmation){
             Image(painter = painterResource(itemAffirmation.image), contentDescription = "Image dice 1")
             Text(text = itemAffirmation.sentence,
                 Modifier
-                    .background(Color.Magenta)
+                    .background(Magenta)
                     .padding(12.dp)
                     .fillMaxWidth(),
                 color = Color.White
@@ -71,9 +77,9 @@ fun AffirmationsColumn(){
 
 }
 
-
+//para la navegaciÓn de mainactiviti añadï :navController: NavController y ell botón final
 @Composable
-fun AffirmationComb(){
+fun AffirmationComb(navController: NavController){
     Column(Modifier.fillMaxWidth()) {
         Box(modifier = Modifier.weight(1f)){
             AffirmationsGrid()
@@ -82,6 +88,10 @@ fun AffirmationComb(){
             AffirmationsColumn()
 
         }
-
+       Button(onClick ={ navController.navigate(MainActivity.MiRoutes.MiPantalla2.miRoute) }, Modifier.padding(12.dp).align(Alignment.CenterHorizontally), colors = ButtonDefaults.buttonColors(
+           backgroundColor = Yellow )) {
+         Text(text = "Go to Art")  
+       }
+            
+        }
     }
-}

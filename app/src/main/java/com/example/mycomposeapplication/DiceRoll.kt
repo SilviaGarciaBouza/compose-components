@@ -1,25 +1,26 @@
 package com.example.mycomposeapplication
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 
 @Composable
-fun DiceRoll(
-    modifier: Modifier = Modifier
-        .padding(20.dp)
-        .fillMaxSize()
-) {
+fun DiceRoll(navController: NavController) {
+    Column(modifier = Modifier.padding(20.dp)
+        .fillMaxSize()) {
+
+
     Column(
+        Modifier.fillMaxWidth().weight(1f),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
@@ -39,5 +40,15 @@ fun DiceRoll(
             Text(text = "Roll")
         }
 
+    }
+        Button(
+            onClick = { navController.navigate(MainActivity.MiRoutes.MiPantalla7.miRoute) },
+            Modifier.padding(12.dp).align(Alignment.CenterHorizontally),
+            colors = ButtonDefaults.buttonColors(
+                backgroundColor = Color.Yellow
+            )
+        ) {
+            Text(text = "Go to Woof")
+        }
     }
 }

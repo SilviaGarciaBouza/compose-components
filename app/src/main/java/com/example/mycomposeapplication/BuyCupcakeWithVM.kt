@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.navigation.NavController
 import com.example.mycomposeapplication.ui.theme.MyComposeApplicationTheme
 /*
 class MainActivity : ComponentActivity() {
@@ -48,81 +49,103 @@ class MainActivity : ComponentActivity() {
 
 
     @Composable
-    fun Cupcake(viewModel: CupcakeViewModel,name: String, onItemSelected: (String) -> Unit, nameFlavour: String, onItemSelectedFlavour: (String) -> Unit) {
+    fun Cupcake(navController: NavController, viewModel: CupcakeViewModel,name: String, onItemSelected: (String) -> Unit, nameFlavour: String, onItemSelectedFlavour: (String) -> Unit) {
         var price = viewModel.cupcakeChange(name)
-       Card(Modifier.fillMaxSize().padding(22.dp)) {
-
-        Column(
-               Modifier
-                   .fillMaxSize()
-                   .padding(22.dp)
-        ) {
+        Column(Modifier
+            .fillMaxSize()) {
 
 
-            Column(modifier = Modifier.fillMaxWidth()) {
-                Row(modifier = Modifier.fillMaxWidth()) {
-                    RadioButton(
-                        selected = name == "1 Cupcakes", onClick = { onItemSelected("1 Cupcakes") })
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Text(text = "1 Cupcakes", Modifier.padding(12.dp))
-                }
-                Row(modifier = Modifier.fillMaxWidth()) {
-                    RadioButton(
-                        selected = name == "2 Cupcakes", onClick = { onItemSelected("2 Cupcakes") })
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Text(text = "2 Cupcakes", Modifier.padding(12.dp))
-                }
-
-            }
-            Spacer(modifier = Modifier.height(22.dp))
-            Divider(
+            Card(
                 Modifier
                     .fillMaxWidth()
-                    .padding(12.dp), color = Color.Black
-            )
-            Spacer(modifier = Modifier.height(22.dp))
-
-            Column(modifier = Modifier.fillMaxWidth()) {
-                Row() {
-                    RadioButton(
-                        selected = nameFlavour == "Sugar",
-                        onClick = { onItemSelectedFlavour("Sugar") })
-                    Spacer(modifier = Modifier.width(8.dp))
-
-                    Text(text = "Sugar", Modifier.padding(12.dp))
-                }
-                Row(modifier = Modifier.fillMaxWidth()) {
-                    RadioButton(
-                        selected = nameFlavour == "Chocolatte",
-                        onClick = { onItemSelectedFlavour("Chocolatte") })
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Text(text = "Chocolatte", Modifier.padding(12.dp))
-                }
-
-            }
-
-            Spacer(modifier = Modifier.height(22.dp))
-            Divider(
-                Modifier
-                    .fillMaxWidth()
-                    .padding(12.dp), color = Color.Black
-            )
-            Spacer(modifier = Modifier.height(22.dp))
-
-            Column(
-                Modifier.fillMaxWidth(),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Bottom
+                    .weight(1f)
+                    .padding(22.dp)
             ) {
 
-                Text(text = "Total = ${price}")
+                Column(
+                    Modifier
+                        .fillMaxSize()
+                        .padding(22.dp)
+                ) {
 
-                Button(onClick = { /*TODO*/ }) {
-                    Text(text = "Buy now!")
+
+                    Column(modifier = Modifier.fillMaxWidth()) {
+                        Row(modifier = Modifier.fillMaxWidth()) {
+                            RadioButton(
+                                selected = name == "1 Cupcakes",
+                                onClick = { onItemSelected("1 Cupcakes") })
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Text(text = "1 Cupcakes", Modifier.padding(12.dp))
+                        }
+                        Row(modifier = Modifier.fillMaxWidth()) {
+                            RadioButton(
+                                selected = name == "2 Cupcakes",
+                                onClick = { onItemSelected("2 Cupcakes") })
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Text(text = "2 Cupcakes", Modifier.padding(12.dp))
+                        }
+
+                    }
+                    Spacer(modifier = Modifier.height(22.dp))
+                    Divider(
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(12.dp), color = Color.Black
+                    )
+                    Spacer(modifier = Modifier.height(22.dp))
+
+                    Column(modifier = Modifier.fillMaxWidth()) {
+                        Row() {
+                            RadioButton(
+                                selected = nameFlavour == "Sugar",
+                                onClick = { onItemSelectedFlavour("Sugar") })
+                            Spacer(modifier = Modifier.width(8.dp))
+
+                            Text(text = "Sugar", Modifier.padding(12.dp))
+                        }
+                        Row(modifier = Modifier.fillMaxWidth()) {
+                            RadioButton(
+                                selected = nameFlavour == "Chocolatte",
+                                onClick = { onItemSelectedFlavour("Chocolatte") })
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Text(text = "Chocolatte", Modifier.padding(12.dp))
+                        }
+
+                    }
+
+                    Spacer(modifier = Modifier.height(22.dp))
+                    Divider(
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(12.dp), color = Color.Black
+                    )
+                    Spacer(modifier = Modifier.height(22.dp))
+
+                    Column(
+                        Modifier.fillMaxWidth(),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Bottom
+                    ) {
+
+                        Text(text = "Total = ${price}")
+
+                        Button(onClick = { /*TODO*/ }) {
+                            Text(text = "Buy now!")
+                        }
+                    }
                 }
-            }
-        }
 
+
+            }
+            Button(
+                onClick = { navController.navigate(MainActivity.MiRoutes.MiPantalla4.miRoute) },
+                Modifier.padding(12.dp).align(Alignment.CenterHorizontally),
+                colors = ButtonDefaults.buttonColors(
+                    backgroundColor = Color.Yellow
+                )
+            ) {
+                Text(text = "Go to Calculate tip")
+            }
         }
     }
 
@@ -139,8 +162,6 @@ class CupcakeViewModel: ViewModel(){
     val PRICE_PER_CUPCAKE= 10
 
 
-    private val _price = MutableLiveData<Int>()
-    val price: LiveData<Int> = _price
 
 
     fun cupcakeChange(myQuantity: String): Int{

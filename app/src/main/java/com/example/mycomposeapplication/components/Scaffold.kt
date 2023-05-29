@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.mycomposeapplication.Tuit
 import com.example.mycomposeapplication.ui.theme.MyComposeApplicationTheme
 import kotlinx.coroutines.launch
@@ -128,7 +129,7 @@ fun MyFAB(){
 @Composable
 fun DefaultPreview() {
     MyComposeApplicationTheme {
-        Tuit()
+        //Tuit(navController = NavController())
 
     }
 }

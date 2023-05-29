@@ -110,25 +110,33 @@ class MainActivity : ComponentActivity() {
                     //AffirmationComb()
                     //DogWoof()
                     //pro Navigation:2 crea la navegación
-                    /*
+                    var selected by rememberSaveable { mutableStateOf("") }
+                    var selectedFlavour by rememberSaveable { mutableStateOf("") }
+
                     val navigationController = rememberNavController()
-                    NavHost(navController = navigationController, startDestination = Routes.Pantalla1.route){
-                        composable(Routes.Pantalla1.route){Screem1(navigationController)}
-                        composable(Routes.Pantalla2.route){Screem2(navigationController)}
-                        composable(Routes.Pantalla3.route){Screem3(navigationController)}
-                        composable(Routes.Pantalla4.route,
-                        arguments = listOf(navArgument("age") {type = NavType.IntType})
-                        ){backStackEntry->
-                            Screem4(navigationController, backStackEntry.arguments?.getInt("age") ?: 0)}
-                        composable(Routes.Pantalla5.route){Screem5(navigationController)}
-                        composable(Routes.Pantalla6.route,
-                            arguments = listOf(navArgument("name") {defaultValue = "S"})
-                        ){backStackEntry->
-                            Screem6(navigationController, backStackEntry.arguments?.getString("name"))}
+                    NavHost(navController = navigationController, startDestination = MiRoutes.MiPantalla1.miRoute){
+                        composable(MiRoutes.MiPantalla1.miRoute){AffirmationComb(navigationController)}
+                        composable(MiRoutes.MiPantalla2.miRoute){ Art(navController = navigationController)}
+
+                        composable(MiRoutes.MiPantalla3.miRoute){Cupcake(navigationController,CupcakeViewModel(),
+                            selected,
+                            { selected = it },
+                            selectedFlavour,
+                            { selectedFlavour = it })}
+
+                        composable(MiRoutes.MiPantalla4.miRoute){ TipCalculator(navController = navigationController)}
+                        composable(MiRoutes.MiPantalla5.miRoute){ChangeDice(navigationController)}
+                        composable(MiRoutes.MIPantalla6.miRoute){ DiceRoll(navController = navigationController) }
+                        composable(MiRoutes.MiPantalla7.miRoute){ DogWoof(navigationController) }
+                        composable(MiRoutes.MiPantalla8.miRoute){ LogIg(navController = navigationController) }
+                        composable(MiRoutes.MiPantalla9.miRoute){ Tuit(navigationController) }
                     }
-                    */
+
                     //MyViewModelExample(myViewModel= MyViewModel())
 
+
+
+                    /*
                     var selected by rememberSaveable { mutableStateOf("") }
                     var selectedFlavour by rememberSaveable { mutableStateOf("") }
                     Cupcake(
@@ -137,6 +145,8 @@ class MainActivity : ComponentActivity() {
                         { selected = it },
                         selectedFlavour,
                         { selectedFlavour = it })
+                        */
+
 
 
                 }
@@ -144,6 +154,26 @@ class MainActivity : ComponentActivity() {
         }
 
     }
+
+
+
+
+    sealed class MiRoutes(val miRoute: String){
+        object MiPantalla1: MiRoutes("miPantalla1")
+        object MiPantalla2: MiRoutes("miPantalla2")
+        object MiPantalla3: MiRoutes("miPantalla3")
+        object MiPantalla4: MiRoutes("miPantalla4")
+        object MiPantalla5: MiRoutes("miPantalla5")
+        object MIPantalla6: MiRoutes("miPantalla6")
+        object MiPantalla7: MiRoutes("miPantalla7")
+        object MiPantalla8: MiRoutes("miPantalla8")
+        object MiPantalla9: MiRoutes("miPantalla9")
+
+    }
+
+
+
+
 }
 
 

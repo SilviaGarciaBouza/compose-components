@@ -11,6 +11,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -18,22 +19,40 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 
 
 @Composable
-fun Tuit() {
-    Column(modifier = Modifier
-        .background(color = Color.Black)
-        .padding(28.dp)) {
+fun Tuit(navController: NavController) {
+    Column(Modifier.fillMaxSize()) {
 
 
-        Row() {
-            StartTuit(1f)
-            Spacer(modifier = Modifier.size(18.dp))
-            EndTuit(3f)
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f)
+                .background(color = Color.Black)
+                .padding(28.dp)
+        ) {
+
+
+            Row() {
+                StartTuit(1f)
+                Spacer(modifier = Modifier.size(18.dp))
+                EndTuit(3f)
+            }
+            Spacer(modifier = Modifier.height(20.dp))
+            DividerTuitBotton()
         }
-        Spacer(modifier = Modifier.height(20.dp))
-        DividerTuitBotton()
+        Button(
+            onClick = { navController.navigate(MainActivity.MiRoutes.MiPantalla1.miRoute) },
+            Modifier.padding(12.dp).align(Alignment.CenterHorizontally),
+            colors = ButtonDefaults.buttonColors(
+                backgroundColor = Color.Yellow
+            )
+        ) {
+            Text(text = "Go to Affirmations")
+        }
     }
 }
 

@@ -17,10 +17,12 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 
 
 @Composable
@@ -134,18 +136,29 @@ fun DogDescription(dog: Dog) {
 }
 
 @Composable
-fun DogWoof() {
+fun DogWoof(navController: NavController) {
     Column() {
-        MyTopAppBarDog()
-        LazyColumn(
-            Modifier
-                .background(MaterialTheme.colors.background)
-                .padding(top = 12.dp), verticalArrangement = Arrangement.spacedBy(14.dp)
-        ) {
-            items(Dogs()) {
-                ItemDog(dog = it)
-            }
+        Column(Modifier.fillMaxWidth().weight(1f)) {
+            MyTopAppBarDog()
+            LazyColumn(
+                Modifier
+                    .background(MaterialTheme.colors.background)
+                    .padding(top = 12.dp), verticalArrangement = Arrangement.spacedBy(14.dp)
+            ) {
+                items(Dogs()) {
+                    ItemDog(dog = it)
+                }
 
+            }
+        }
+        Button(
+            onClick = { navController.navigate(MainActivity.MiRoutes.MiPantalla8.miRoute) },
+            Modifier.padding(12.dp).align(Alignment.CenterHorizontally),
+            colors = ButtonDefaults.buttonColors(
+                backgroundColor = Color.Yellow
+            )
+        ) {
+            Text(text = "Go to Woof")
         }
     }
 

@@ -8,6 +8,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -31,7 +32,9 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.mycomposeapplication.ui.theme.MyComposeApplicationTheme
+import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 
 /*class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,20 +61,38 @@ import com.example.mycomposeapplication.ui.theme.MyComposeApplicationTheme
 
 
 @Composable
-fun LogIg() {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(22.dp)
-    ) {
-        HeaderLog(Modifier.align(Alignment.TopEnd))
-        Spacer(modifier = Modifier.size(26.dp))
-        BodyLog(Modifier.align(Alignment.Center))
-        Spacer(modifier = Modifier.size(26.dp))
-        footerLog(Modifier.align(Alignment.BottomCenter))
+fun LogIg(navController: NavController) {
+    Column(Modifier
+        .fillMaxSize()) {
+
+
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(22.dp)
+                .weight(1f)
+
+        ) {
+            HeaderLog(Modifier.align(Alignment.TopEnd))
+            Spacer(modifier = Modifier.size(26.dp))
+            BodyLog(Modifier.align(Alignment.Center))
+            Spacer(modifier = Modifier.size(26.dp))
+            footerLog(Modifier.align(Alignment.BottomCenter))
+        }
+
+
+
+        Button(
+            onClick = { navController.navigate(MainActivity.MiRoutes.MiPantalla9.miRoute) },
+            Modifier.padding(12.dp).align(Alignment.CenterHorizontally),
+            colors = ButtonDefaults.buttonColors(
+                backgroundColor = Color.Yellow
+            )
+        ) {
+            Text(text = "Go to Tuit")
+        }
     }
 }
-
 
 @Composable
 fun footerLog(modifier: Modifier) {
