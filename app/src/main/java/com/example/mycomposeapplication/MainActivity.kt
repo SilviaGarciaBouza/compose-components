@@ -104,6 +104,7 @@ class MainActivity : ComponentActivity() {
                     //Tuit()
                     // TipCalculator()
                     // Art()
+                    //MyViewModelExample(myViewModel= MyViewModel())
                     //MyReciclerView1()
                     //MyReciclerView3()
                     // MyScaffold1()
@@ -131,24 +132,6 @@ class MainActivity : ComponentActivity() {
                         composable(MiRoutes.MiPantalla8.miRoute){ LogIg(navController = navigationController) }
                         composable(MiRoutes.MiPantalla9.miRoute){ Tuit(navigationController) }
                     }
-
-                    //MyViewModelExample(myViewModel= MyViewModel())
-
-
-
-                    /*
-                    var selected by rememberSaveable { mutableStateOf("") }
-                    var selectedFlavour by rememberSaveable { mutableStateOf("") }
-                    Cupcake(
-                        CupcakeViewModel(),
-                        selected,
-                        { selected = it },
-                        selectedFlavour,
-                        { selectedFlavour = it })
-                        */
-
-
-
                 }
             }
         }

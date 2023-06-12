@@ -57,15 +57,10 @@ import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 
 
 
-
-
-
 @Composable
 fun LogIg(navController: NavController) {
     Column(Modifier
         .fillMaxSize()) {
-
-
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -79,9 +74,6 @@ fun LogIg(navController: NavController) {
             Spacer(modifier = Modifier.size(26.dp))
             footerLog(Modifier.align(Alignment.BottomCenter))
         }
-
-
-
         Button(
             onClick = { navController.navigate(MainActivity.MiRoutes.MiPantalla9.miRoute) },
             Modifier.padding(12.dp).align(Alignment.CenterHorizontally),

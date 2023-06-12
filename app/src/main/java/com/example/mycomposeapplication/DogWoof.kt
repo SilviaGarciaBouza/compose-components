@@ -158,7 +158,7 @@ fun DogWoof(navController: NavController) {
                 backgroundColor = Color.Yellow
             )
         ) {
-            Text(text = "Go to Woof")
+            Text(text = "Go to Log")
         }
     }
 
