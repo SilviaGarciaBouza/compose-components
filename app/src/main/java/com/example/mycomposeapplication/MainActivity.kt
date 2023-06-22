@@ -111,6 +111,9 @@ class MainActivity : ComponentActivity() {
                     //AffirmationComb()
                     //DogWoof()
                     //pro Navigation:2 crea la navegación
+                    //Animation()
+
+
                     var selected by rememberSaveable { mutableStateOf("") }
                     var selectedFlavour by rememberSaveable { mutableStateOf("") }
 
@@ -132,6 +135,11 @@ class MainActivity : ComponentActivity() {
                         composable(MiRoutes.MiPantalla8.miRoute){ LogIg(navController = navigationController) }
                         composable(MiRoutes.MiPantalla9.miRoute){ Tuit(navigationController) }
                     }
+
+
+
+
+
                 }
             }
         }
