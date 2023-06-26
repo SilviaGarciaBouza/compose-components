@@ -81,13 +81,18 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgs
 import androidx.navigation.navArgument
 import com.example.mycomposeapplication.components.*
+import com.example.mycomposeapplication.taskApp.UI.TaskScreem
+import com.example.mycomposeapplication.taskApp.UI.TaskViewModel
 import com.example.mycomposeapplication.ui.theme.*
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 
-
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    private val logingViewModel: TaskViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -98,21 +103,13 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colors.background
 
                 ) {
-                    //ChangeDice()
-                    //DiceRoll()
-                    // LogIg()
-                    //Tuit()
-                    // TipCalculator()
-                    // Art()
-                    //MyViewModelExample(myViewModel= MyViewModel())
-                    //MyReciclerView1()
-                    //MyReciclerView3()
-                    // MyScaffold1()
-                    //AffirmationComb()
-                    //DogWoof()
-                    //pro Navigation:2 crea la navegación
-                    //Animation()
 
+
+                    TaskScreem(logingViewModel)
+
+
+
+/*
 
                     var selected by rememberSaveable { mutableStateOf("") }
                     var selectedFlavour by rememberSaveable { mutableStateOf("") }
@@ -136,7 +133,7 @@ class MainActivity : ComponentActivity() {
                         composable(MiRoutes.MiPantalla9.miRoute){ Tuit(navigationController) }
                     }
 
-
+*/
 
 
 

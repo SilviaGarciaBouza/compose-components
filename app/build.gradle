@@ -1,6 +1,10 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    //para generar codigo
+    id 'kotlin-kapt'
+    //daggerhilt
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -67,4 +71,8 @@ dependencies {
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_ui_version"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_ui_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_ui_version"
+
+    //Dagger Hilt (el 2.41 (la versión)tiene q ser igual q en el del proyect)
+    implementation "com.google.dagger:hilt-android:2.44"
+    kapt "com.google.dagger:hilt-android-compiler:2.44"
 }

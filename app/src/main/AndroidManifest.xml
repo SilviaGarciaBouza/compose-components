@@ -9,6 +9,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
+        android:name= ".taskApp.TaskApp"
         android:theme="@style/Theme.MyComposeApplication"
         tools:targetApi="31">
         <activity
