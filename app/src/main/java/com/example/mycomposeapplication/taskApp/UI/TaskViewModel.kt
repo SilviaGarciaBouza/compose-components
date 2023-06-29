@@ -12,7 +12,6 @@ import javax.inject.Inject
 
 
 @HiltViewModel
-
 class TaskViewModel @Inject constructor(): ViewModel() {
 
     private var _taskDialogShow= MutableLiveData<Boolean>()
@@ -35,4 +34,24 @@ class TaskViewModel @Inject constructor(): ViewModel() {
         _taskDialogShow.value =true
     }
 
+    fun selectedCheckBoxTask(taskModel: TaskModel):Boolean{
+        return taskModel.selected
+    }
+
+    fun changeSelectedCheckBoxTask(taskModel: TaskModel){
+      // En lugar de poner
+        //  taskModel.selected = !taskModel.selected
+        //   poner lo q hay a continuación:
+        val index = _listTasks.indexOf(taskModel)
+        _listTasks[index] = _listTasks[index].let {
+            it.copy(selected = !it.selected)
+        }
+
+    }
+
+    fun itemTaskRemove(taskModel: TaskModel) {
+        val myTask = _listTasks.find { it.id ==taskModel.id }
+        _listTasks.remove(myTask)
+
+    }
 }
