@@ -45,13 +45,13 @@ fun Tuit(navController: NavController) {
             DividerTuitBotton()
         }
         Button(
-            onClick = { navController.navigate(MainActivity.MiRoutes.MiPantalla1.miRoute) },
+            onClick = { navController.navigate(MainActivity.MiRoutes.MiPantalla10.miRoute) },
             Modifier.padding(12.dp).align(Alignment.CenterHorizontally),
             colors = ButtonDefaults.buttonColors(
                 backgroundColor = Color.Yellow
             )
         ) {
-            Text(text = "Go to Affirmations")
+            Text(text = "Go to Task app")
         }
     }
 }

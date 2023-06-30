@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class AddTaskUseCase @Inject constructor(private val taskRepository: TaskRepository){
-    suspend fun invoke(taskModel: TaskModel){
+    suspend operator fun invoke(taskModel: TaskModel){
         taskRepository.addTask(taskModel)
     }
 }

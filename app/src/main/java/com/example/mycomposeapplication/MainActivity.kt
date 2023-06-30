@@ -104,12 +104,11 @@ class MainActivity : ComponentActivity() {
 
                 ) {
 
-
-                    TaskScreem(logingViewModel)
-
+                //
 
 
-/*
+
+
 
                     var selected by rememberSaveable { mutableStateOf("") }
                     var selectedFlavour by rememberSaveable { mutableStateOf("") }
@@ -131,9 +130,10 @@ class MainActivity : ComponentActivity() {
                         composable(MiRoutes.MiPantalla7.miRoute){ DogWoof(navigationController) }
                         composable(MiRoutes.MiPantalla8.miRoute){ LogIg(navController = navigationController) }
                         composable(MiRoutes.MiPantalla9.miRoute){ Tuit(navigationController) }
+                        composable(MiRoutes.MiPantalla10.miRoute){ TaskScreem(navController = navigationController, logingViewModel) }
+
                     }
 
-*/
 
 
 
@@ -156,6 +156,7 @@ class MainActivity : ComponentActivity() {
         object MiPantalla7: MiRoutes("miPantalla7")
         object MiPantalla8: MiRoutes("miPantalla8")
         object MiPantalla9: MiRoutes("miPantalla9")
+        object MiPantalla10: MiRoutes("miPantalla10")
 
     }
 
