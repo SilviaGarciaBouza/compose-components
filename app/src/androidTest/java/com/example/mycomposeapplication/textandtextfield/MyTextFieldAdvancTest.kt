@@ -1,26 +1,26 @@
 package com.example.mycomposeapplication.textandtextfield
 
-import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.performTextClearance
 import com.example.mycomposeapplication.Greeting
+import com.example.mycomposeapplication.MyTextFieldAdvanc
 import org.junit.Rule
 import org.junit.Test
 
-class GreetingTest {
+class MyTextFieldAdvancTest {
     //Hay q poner estas 2 líneas
     @get: Rule
     val composeTestRule = createComposeRule()
 
     @Test
-    fun whenComponentStart_thenVerifyConstainsHi() {
+    fun whenTextCointainsHi_thenConstainsHi() {
         composeTestRule.setContent {
-            Greeting()
+            MyTextFieldAdvanc()
         }
-
-        //Si hay mas elementos text, busca de entre todos el q contiene hi, sin importat m,ayúsculas
-        composeTestRule.onNodeWithTag("component1").assertExists()
+       //Borra texto del telfield
+        composeTestRule.onNodeWithText("").performTextClearance()
 
     }
-
 
 }

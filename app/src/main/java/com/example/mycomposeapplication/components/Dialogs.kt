@@ -2,6 +2,7 @@ package com.example.mycomposeapplication
 
 import androidx.compose.runtime.Composable
 import android.graphics.drawable.Icon
+import android.nfc.Tag
 import android.os.Bundle
 import android.text.style.BackgroundColorSpan
 import androidx.activity.ComponentActivity
@@ -25,6 +26,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.VerticalAlignmentLine
 import androidx.compose.ui.modifier.modifierLocalConsumer
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -49,6 +51,7 @@ fun MyDialog(show: Boolean, onDismiss: () -> Unit) {
                     .background(Color.White)
                     .padding(24.dp)
                     .fillMaxWidth()
+                    .testTag("myDialog")
             ) {
                 MyTittleDialog("Titulo del ejemplo")
                 MyDivideDialog()

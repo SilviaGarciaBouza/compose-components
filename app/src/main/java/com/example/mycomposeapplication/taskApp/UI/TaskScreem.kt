@@ -48,7 +48,9 @@ import androidx.compose.runtime.setValue
 
 @Composable
 fun TaskScreem(navController: NavController,viewModel: TaskViewModel) {
-    Column() {
+  //  fun TaskScreem(viewModel: TaskViewModel) {
+
+        Column() {
 
 
     Box(
