@@ -48,61 +48,61 @@ import androidx.compose.runtime.setValue
 
 @Composable
 fun TaskScreem(navController: NavController,viewModel: TaskViewModel) {
-  //  fun TaskScreem(viewModel: TaskViewModel) {
+   // fun TaskScreem(viewModel: TaskViewModel) {
 
         Column() {
 
 
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(22.dp)
-            .weight(1f)
-    ) {
-        val lifecycle = LocalLifecycleOwner.current.lifecycle
-        val uiState by produceState<TasksUiState>(
-            initialValue = TasksUiState.Loading,
-            key1 = lifecycle,
-            key2 = viewModel
-        ) {
-            lifecycle.repeatOnLifecycle(state = Lifecycle.State.STARTED) {
-                viewModel.uiState.collect { value = it }
-            }
-        }
-
-        when (uiState) {
-            is TasksUiState.Error -> Toast.makeText(
-                LocalContext.current,
-                "Error, try again",
-                Toast.LENGTH_SHORT
-            ).show()
-
-            is TasksUiState.Loading -> CircularProgressIndicator(
-                color = Color.Magenta,
-                strokeWidth = 10.dp
-            )
-            is TasksUiState.Success -> {
-                TasksList((uiState as TasksUiState.Success).tasksList, viewModel)
-                val showDialog
-                        : Boolean by viewModel.taskDialogShow.observeAsState(initial = true)
-                Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(22.dp), Alignment.BottomEnd
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(22.dp)
+                    .weight(1f)
+            ) {
+                val lifecycle = LocalLifecycleOwner.current.lifecycle
+                val uiState by produceState<TasksUiState>(
+                    initialValue = TasksUiState.Loading,
+                    key1 = lifecycle,
+                    key2 = viewModel
                 ) {
-                    FabAddTask(viewModel)
+                    lifecycle.repeatOnLifecycle(state = Lifecycle.State.STARTED) {
+                        viewModel.uiState.collect { value = it }
+                    }
                 }
-                if (showDialog) {
-                    DialogAddTask(
-                        showDialog,
-                        { viewModel.closeTaskDialogShow() },
-                        // Modifier.align(Alignment.Center),
-                        viewModel
+
+                when (uiState) {
+                    is TasksUiState.Error -> Toast.makeText(
+                        LocalContext.current,
+                        "Error, try again",
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                    is TasksUiState.Loading -> CircularProgressIndicator(
+                        color = Color.Magenta,
+                        strokeWidth = 10.dp
                     )
+                    is TasksUiState.Success -> {
+                        TasksList((uiState as TasksUiState.Success).tasksList, viewModel)
+                        val showDialog
+                                : Boolean by viewModel.taskDialogShow.observeAsState(initial = true)
+                        Box(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(22.dp), Alignment.BottomEnd
+                        ) {
+                            FabAddTask(viewModel)
+                        }
+                        if (showDialog) {
+                            DialogAddTask(
+                                showDialog,
+                                { viewModel.closeTaskDialogShow() },
+                                // Modifier.align(Alignment.Center),
+                                viewModel
+                            )
+                        }
+                    }
                 }
             }
-        }
-    }
 
 
     Button(onClick ={ navController.navigate(MainActivity.MiRoutes.MiPantalla1.miRoute) }, Modifier.padding(12.dp).
@@ -111,7 +111,11 @@ fun TaskScreem(navController: NavController,viewModel: TaskViewModel) {
     )) {
         Text(text = "Go to Affirmations")
     }
+
+
 }
+
+
 }
 
 
