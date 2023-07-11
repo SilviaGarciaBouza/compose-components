@@ -65,7 +65,7 @@ dependencies {
     implementation "androidx.compose.runtime:runtime-livedata:1.2.1"
 
     implementation "androidx.compose.material:material-icons-extended:$compose_ui_version"
-    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
@@ -74,6 +74,7 @@ dependencies {
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_ui_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_ui_version"
     //mockk
+
     testImplementation "io.mockk:mockk:1.12.2"//para moquear(crear cosas por él mismo)
 
     //Dagger Hilt (el 2.41 (la versión)tiene q ser igual q en el del proyect)
@@ -84,4 +85,17 @@ dependencies {
     implementation "androidx.room:room-runtime:2.5.0"
     kapt "androidx.room:room-compiler:2.5.0"
     implementation "androidx.room:room-ktx:2.5.0"
+
+    //corroutines
+    //implementation"org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0"
+    implementation"org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0"
+
+
+    testImplementation "androidx.arch.core:core-testing:2.1.0"
+
+
+
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0' //Ya estaba, la hemos actualizado.
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0"
+    testImplementation "androidx.arch.core:core-testing:2.1.0"
 }

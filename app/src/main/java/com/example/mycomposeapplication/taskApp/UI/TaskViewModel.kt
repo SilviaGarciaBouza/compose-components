@@ -26,47 +26,45 @@ class TaskViewModel @Inject constructor(
     private val addTaskUseCase: AddTaskUseCase,
     private val removeTaskUseCase: RemoveTaskUseCase,
     private val updateTaskUseCase: UpdateTaskUseCase
-): ViewModel() {
+) : ViewModel() {
     //Flow2-crea la variable de los flow, ensea la lista en success
-    val uiState:StateFlow<TasksUiState> = getTasksUseCase().map (::Success)
+    val uiState: StateFlow<TasksUiState> = getTasksUseCase().map(::Success)
         .catch { TasksUiState.Error(it) }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), TasksUiState.Loading)
 
-    private var _taskDialogShow= MutableLiveData<Boolean>()
+    private var _taskDialogShow = MutableLiveData<Boolean>()
     var taskDialogShow: LiveData<Boolean> = _taskDialogShow
+    //  private var _listTasks= mutableStateListOf<TaskModel>()
+    // var listTasks: List<TaskModel> = _listTasks
 
-  //  private var _listTasks= mutableStateListOf<TaskModel>()
-   // var listTasks: List<TaskModel> = _listTasks
-
-    fun closeTaskDialogShow(){
-        _taskDialogShow.value =false
+    fun closeTaskDialogShow() {
+        _taskDialogShow.value = false
     }
 
-
-    fun openTaskDialogShow(){
-        _taskDialogShow.value =true
+    fun openTaskDialogShow() {
+        _taskDialogShow.value = true
     }
-
 
     //    //Flow3-las funciones salen del flow
-    fun addTask(name: String){
+    fun addTask(name: String) {
         viewModelScope.launch {
-            _taskDialogShow.value= false
-            addTaskUseCase(TaskModel(nameTask= name))
+            //postValue pq es una corrutina
+            _taskDialogShow.value = false
+            addTaskUseCase(TaskModel(nameTask = name))
         }
-
-    }
-    fun changeSelectedCheckBoxTask(taskModel: TaskModel){
-    viewModelScope.launch {
-        updateTaskUseCase(taskModel.copy(selected = !taskModel.selected))
     }
 
+    fun changeSelectedCheckBoxTask(taskModel: TaskModel) {
+        viewModelScope.launch {
+            updateTaskUseCase(taskModel.copy(selected = !taskModel.selected))
+        }
     }
 
     fun itemTaskRemove(taskModel: TaskModel) {
-       viewModelScope.launch {
-           removeTaskUseCase(taskModel)
-       }
+        viewModelScope.launch {
+            removeTaskUseCase(taskModel)
+        }
 
     }
+
 }
